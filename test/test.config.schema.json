@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Test Configuration Schema",
+    "description": "Schema for VS Code extension test configuration",
+    "type": "object",
+    "properties": {
+        "files": {
+            "type": "string",
+            "description": "Glob pattern for test files from the root directory."
+        },
+        "vscode": {
+            "type": "object",
+            "description": "VS Code specific test configuration",
+            "properties": {
+                "disableExtensions": {
+                    "type": "boolean",
+                    "description": "Whether to disable extensions during tests"
+                },
+                "workspace": {
+                    "type": "string",
+                    "description": "The relative path to the workspace file. Must be a subdirectory of the root directory."
+                }
+            }
+        },
+        "mocha": {
+            "type": "object",
+            "description": "Mocha test framework configuration",
+            "properties": {
+                "ui": {
+                    "type": "string",
+                    "description": "The UI to use for Mocha tests",
+                    "enum": ["tdd"]
+                },
+                "color": {
+                    "type": "boolean",
+                    "description": "Whether to use colored output in test results"
+                }
+            }
+        }
+    },
+    "required": ["files","vscode","mocha"]
+}

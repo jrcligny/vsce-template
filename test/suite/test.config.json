@@ -1,0 +1,12 @@
+{
+    "$schema": "../test.config.schema.json",
+    "files": "./out-test/test/suite/**/**.test.js",
+    "vscode": {
+        "disableExtensions": true,
+        "workspace": "./test-workspaces/suite"
+    },
+    "mocha": {
+        "ui": "tdd",
+        "color": true
+    }
+}

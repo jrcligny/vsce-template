@@ -1,0 +1,82 @@
+{
+	"name": "template",
+	"displayName": "App_Name",
+	"publisher": "jrcligny",
+	"description": "This is a template for creating a new VS Code extension.",
+	"homepage": "https://github.com/jrcligny/vsce-template",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jrcligny/vsce-template"
+	},
+	"bugs": {
+		"url": "https://github.com/jrcligny/vsce-template/issues"
+	},
+	"private": true,
+	"engines": {
+		"vscode": "^1.97.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"contributes": {
+		"configuration": {
+			"properties": {
+				"jrcligny.property": {
+					"type": "string",
+					"default": "Hello World",
+					"description": "This is a sample property"
+				}
+			}
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "jrcligny-template",
+					"title": "App_Name",
+					"icon": "./img/activity-bar-icon.svg"
+				}
+			]
+		},
+		"views": {
+			"jrcligny-template": [
+				{
+					"id": "jrcligny.template.treeview",
+					"name": "TreeView",
+					"type": "tree",
+					"accessibilityHelpContent": "A custom tree view for App_Name"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "jrcligny.template.command",
+				"title": "App_Name command",
+				"icon": "$(file-code)",
+				"category": "jrcligny.template.file-type"
+			}
+		],
+		"menus": {
+			"commandPalette": [],
+			"view/title": [],
+			"view/item/context": [],
+			"editor/context": [
+				{
+					"command": "jrcligny.template.command",
+					"when": "resourcePath in jrcligny.template.file-type",
+					"group": "jrcligny.template@1"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "jrcligny.template.command",
+					"when": "resourcePath in jrcligny.template.file-type",
+					"group": "jrcligny.template@1"
+				}
+			]
+		},
+		"keybindings": []
+	}
+}

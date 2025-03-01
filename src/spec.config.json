@@ -1,0 +1,5 @@
+{
+  "spec": "out-test/**/*.spec.js",
+  "ui": "tdd",
+  "color": true
+}

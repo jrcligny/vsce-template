@@ -1,0 +1,21 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v[1-9][0-9]?.[0-9][0-9]?.[0-9][0-9]?" # Push events to matching version v1.0.0, v20.15.10
+
+jobs:
+  publish:
+    environment:
+      name: release
+    name: Publish Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Publish
+        uses: ./.github/actions/publish

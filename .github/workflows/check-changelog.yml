@@ -1,0 +1,24 @@
+name: Check Changelog
+
+on:
+  pull_request:
+    branches: [ pre-release, release ]
+
+jobs:
+  build:
+    name: Check Changelog
+    runs-on: ubuntu-latest
+    if: |
+      !contains(github.event.pull_request.body, '[skip changelog]') &&
+      !contains(github.event.pull_request.labels.*.name, 'refactor') &&
+      !contains(github.event.pull_request.labels.*.name, 'documentation') &&
+      !contains(github.event.pull_request.labels.*.name, 'test')
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+  
+      - name: Check that CHANGELOG is touched
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth 1 && \
+          git diff remotes/origin/${{ github.base_ref }} --name-only | grep CHANGELOG.md

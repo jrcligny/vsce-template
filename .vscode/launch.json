@@ -1,0 +1,85 @@
+// A launch configuration that compiles the extension and then opens it inside a new window
+{
+	"version": "2.0.0",
+	"configurations": [
+		{
+			"name": "Run Extension",
+			"presentation": {
+				"hidden": false,
+				"group": "build",
+				"order": 1
+			},
+			"preLaunchTask": "npm: compile",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--disable-extensions",
+				"--extensionDevelopmentPath=${workspaceFolder}/out-package",
+			],
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceFolder}/out-package/app/extension.js"
+			],
+		},
+		{
+			"name": "Run Unit Tests",
+			"presentation": {
+				"hidden": false,
+				"group": "test",
+				"order": 1
+			},
+			"preLaunchTask": "npm: pretest",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+			"args": [
+				"--colors",
+				"--ui=tdd",
+				"--recursive",
+				"${workspaceFolder}/out-test/**/*.spec.js",
+			],
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceFolder}/out-test/**/*.js"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+		},
+		{
+			"name": "Run e2e Tests",
+			"presentation": {
+				"hidden": false,
+				"group": "test",
+				"order": 2
+			},
+			"preLaunchTask": "npm: pretest",
+			"type": "extensionHost",
+			"request": "launch",
+			"runtimeExecutable": "${execPath}",
+			"args": [
+				"--disable-extensions",
+				"--extensionDevelopmentPath=${workspaceFolder}/out-package",
+				"--extensionTestsPath=${workspaceFolder}/tasks/test/runSuite.js",
+			],
+			"env": {
+				"CONFIG_FILE": "${workspaceFolder}/test/${input:CONFIG_FILE}"
+			},
+			"sourceMaps": true,
+			"outFiles": [
+				"${workspaceFolder}/out-test/**/*.js",
+				"${workspaceFolder}/out-package/app/extension.js"
+			],
+		}
+	],
+	"inputs": [
+		{
+			"id": "CONFIG_FILE",
+			"type": "pickString",
+			"description": "Select the configuration to execute",
+			"options": [
+				"suite/test.config.json"
+			],
+			"default": "suite/test.config.json"
+		}
+	]
+}
