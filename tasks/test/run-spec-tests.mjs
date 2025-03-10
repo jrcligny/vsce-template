@@ -9,11 +9,11 @@ export default async function runSpecTests(options = null) {
      */
     const config = await fs.readFile('../../src/spec.config.json').then(data => JSON.parse(data.toString()));
 
-    if (options && options.reporter === 'xunit') {
-        console.log('🧾 Generating output in xunit file: .vscode-test/reports/spec-tests.xml');
-        config.reporter = 'xunit';
+    if (options && options.reporter === 'json') {
+        console.log('🧾 Generating output in json file: out-test/reports/spec-tests.json');
+        config.reporter = 'json';
         config.reporterOptions = {
-            output: path.resolve('../../.vscode-test/reports/spec-tests.xml'),
+            output: path.resolve('../../out-test/reports/spec-tests.json'),
         };
     }
 

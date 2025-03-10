@@ -7,7 +7,7 @@ on:
     branches: [ pre-release, release ]
 
 jobs:
-  lint-javascript:
+  run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
 
@@ -28,3 +28,11 @@ jobs:
 
       - name: Run tests
         run: npm run test:ci
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: test-reports
+          path: out-test/reports/*.json
+          if-no-files-found: error

@@ -9,15 +9,15 @@ export { clean, };
 task('run-spec-tests', async function () {
     await runSpecTests();
 });
-task('run-spec-tests-with-xunit-reporter', async function () {
-    await runSpecTests({ reporter: 'xunit', });
+task('run-spec-tests-with-json-reporter', async function () {
+    await runSpecTests({ reporter: 'json', });
 });
 
 task('run-e2e-tests', async function () {
     await runE2ETests();
 });
-task('run-e2e-tests-with-xunit-reporter', async function () {
-    await runE2ETests({ reporter: 'xunit', });
+task('run-e2e-tests-with-json-reporter', async function () {
+    await runE2ETests({ reporter: 'json', });
 });
 
 export const run = series(
@@ -26,6 +26,6 @@ export const run = series(
 );
 
 export const runCI = series(
-    'run-spec-tests-with-xunit-reporter',
-    'run-e2e-tests-with-xunit-reporter',
+    'run-spec-tests-with-json-reporter',
+    'run-e2e-tests-with-json-reporter',
 );

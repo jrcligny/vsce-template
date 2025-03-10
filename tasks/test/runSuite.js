@@ -17,11 +17,11 @@ async function run() {
 
     const suiteName = path.basename(path.dirname(process.env.CONFIG_FILE));
 
-    if (process.env.REPORTER === 'xunit') {
-        console.log(`🧾 Generating output in xunit file: .vscode-test/reports/e2e-tests-${suiteName}.xml`);
-        config.mocha.reporter = 'xunit';
+    if (process.env.REPORTER === 'json') {
+        console.log(`🧾 Generating output in json file: out-test/reports/e2e-tests-${suiteName}.json`);
+        config.mocha.reporter = 'json';
         config.mocha.reporterOptions = {
-            output: path.resolve(__dirname, `../../.vscode-test/reports/e2e-tests-${suiteName}.xml`),
+            output: path.resolve(__dirname, `../../out-test/reports/e2e-tests-${suiteName}.json`),
         };
     }
 
