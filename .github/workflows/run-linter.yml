@@ -15,8 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Lint Codebase
-        uses: jrcligny/run-eslint-action@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          pattern: 'src/**/*.ts'
-          overrideConfigFile: eslint.config.mjs
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Lint codebase
+        run: npm run lint
